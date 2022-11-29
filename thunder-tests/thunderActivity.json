@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "2c303663-2a24-46c9-b1c1-b2d7f58e5778",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:5000/admin/login",
+    "url": "http://localhost:5000/admin/login",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-29T00:56:26.779Z",
+    "modified": "2022-11-29T00:56:26.779Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "377303a0-96c7-4311-9864-1a071dd84252",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:5000/admin/login",
+    "url": "http://localhost:5000/admin/product",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-29T00:56:30.935Z",
+    "modified": "2022-11-29T01:21:54.613Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Netflix\",\n  \"active\": true\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]

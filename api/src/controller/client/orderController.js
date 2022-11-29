@@ -9,3 +9,5 @@ server.post('/order', async (req, reps) => {
     
   }
 });
+
+export default server;

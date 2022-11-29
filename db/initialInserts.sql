@@ -16,9 +16,10 @@ insert into tb_product (nm_product, bt_active)
 
 -- Client
 insert into tb_client (nm_client, ds_cpf, dt_birth, bt_active)
-                values("Gustavo Alves Vieira", "360.915.878-62", "2022-01-23");
+                values("Gustavo Alves Vieira", "360.915.878-62", "2022-01-23", 1);
 
 
 
 -- Order
-insert into tb_order ()
+insert into tb_order (id_client, id_product, vl_purchase, qtd_purchase, vl_total, dt_order)
+               values(1, 1, 200.00, 2, 400.00, "2022-11-28");

@@ -9,9 +9,9 @@ import clientAccountController from './controller/client/accountController.js';
 import clientOrderController from './controller/client/orderController.js';
 
 export default function configRoutes(server) {
-  server.use(adminAccountController);
-  server.use(adminProductController);
+  server.use('/admin',adminAccountController);
+  server.use('/admin', adminProductController);
 
-  server.use(clientAccountController);
-  server.use(clientOrderController);
+  server.use('/client',clientAccountController);
+  server.use('/client',clientOrderController);
 }
