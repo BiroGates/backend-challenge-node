@@ -1,19 +1,23 @@
+import { myError } from '../../util/err/customError.js';
+import { isEmail } from '../../util/validation/isEmail.js';
 import * as repo from '../../repository/admin/accountRepository.js';
 
 export async function signIn(fields) {
-  let regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
   if(!fields.email || !fields.senha)
-    throw new Error('Digite todos os campos!');
-  else if (!regexp.test(fields.email.toLowerCase()))
-    throw new Error('Email inválido.');
+    throw new myError('Digite todos os campos!', 400);
+  
+  else if (isEmail(fields.email) === false)
+    throw new myError('Email inválido.', 400);
+  
   else if (typeof fields.email === 'undefined' || fields.email === '')
-    throw new Error('E-mail obrigatório.');
+    throw new myError('E-mail obrigatório.', 400);
+  
   else if (typeof fields.senha === 'undefined' || fields.senha === '')
-    throw new Error('Senha obrigatória.');
+    throw new myError('Senha obrigatória.', 400);
 
   const r = await repo.signIn(fields);
   if(!r.length)
-    throw new Error('Credencias Inválidas!');
+    throw new myError('Credencias Inválidas!', 401);
+ 
   return r[0];
 }

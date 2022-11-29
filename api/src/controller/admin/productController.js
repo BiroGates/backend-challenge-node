@@ -1,8 +1,17 @@
+import { handleError } from '../../util/err/customError.js';
 import * as services from '../../services/admin/productServices.js';
 import { Router } from 'express';
 
 const server = Router();
 
+server.get('/product', async (req, resp) => {
+  try {
+    const r = await services.listProducts();
+    resp.send(r);
+  } catch (error) {
+    handleError(error, resp);
+  }
+});
 
 server.post('/product', async (req, resp) => {
   try {
@@ -12,9 +21,7 @@ server.post('/product', async (req, resp) => {
       insertedId: r
     });
   } catch (error) {
-    resp.status(400).send({
-      x: error.message
-    })
+    handleError(error, resp);
   }
 });
 

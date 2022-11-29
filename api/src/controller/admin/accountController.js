@@ -1,3 +1,4 @@
+import { handleError } from '../../util/err/customError.js';
 import * as services from '../../services/admin/accountServices.js';
 import { Router } from 'express';
 
@@ -10,9 +11,7 @@ server.post('/login', async (req, resp) => {
     let r = await services.signIn(admin);
     resp.send(r);
   } catch (error) {
-    resp.status(400).send({
-      x: error.message
-    }) 
+    handleError(error, resp)
   }
 });
 
