@@ -8,10 +8,10 @@ export async function makeOrder(id_client, id_product, order) {
     || !order.valuePurchase || !order.qtdPurchase)
     throw new myError('Preencha todos os campos!', 400);
   
-  else if(doQuery(id_client, `select * from tb_client where id_client = ?`) === false)
+  else if(await doQuery(id_client, `select * from tb_client where id_client = ?`) === true)
     throw new myError('Cliente não encontrado!', 400);
   
-  else if(doQuery(id_product, `select * from tb_product where id_product = ?`) === false)
+  else if(await doQuery(id_product, `select * from tb_product where id_product = ?`) === true)
     throw new myError('Produto invalido!', 400);
 
   else if(typeof(order.valuePurchase) !== 'number' || typeof(order.qtdPurchase) !== 'number')
@@ -25,8 +25,9 @@ export async function makeOrder(id_client, id_product, order) {
   const r = await repo.makeOrder(id_client, id_product, order);
   return r;
 }
-
-
-export async function listOrder() {
-  
+export async function listOrders() {
+  const r = await repo.listOrders();
+  if(!r.length === true)
+    throw new myError('Nenhum produto inserido!', 404);
+  return r;
 }

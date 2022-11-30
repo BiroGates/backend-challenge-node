@@ -3,7 +3,7 @@ import { validEmail } from '../../util/validation/validEmail.js';
 import * as repo from '../../repository/admin/accountRepository.js';
 
 export async function signIn(fields) {
-  if(!fields.email || !fields.senha)
+  if(!fields.email || !fields.password)
     throw new myError('Digite todos os campos!', 400);
   
   else if (validEmail(fields.email) === false)
@@ -12,7 +12,7 @@ export async function signIn(fields) {
   else if (typeof fields.email === 'undefined' || fields.email === '')
     throw new myError('E-mail obrigatório.', 400);
   
-  else if (typeof fields.senha === 'undefined' || fields.senha === '')
+  else if (typeof fields.password === 'undefined' || fields.password === '')
     throw new myError('Senha obrigatória.', 400);
 
   const r = await repo.signIn(fields);

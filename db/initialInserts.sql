@@ -1,5 +1,5 @@
 -- Admin
-insert into tb_admin (ds_email, ds_senha) 
+insert into tb_admin (ds_email, ds_password) 
                values("teste@teste.com", "123456");
 
 
@@ -15,8 +15,8 @@ insert into tb_product (nm_product, bt_active)
 
 
 -- Client
-insert into tb_client (nm_client, ds_cpf, dt_birth, bt_active)
-                values("Gustavo Alves Vieira", "360.915.878-62", "2022-01-23", 1);
+insert into tb_client (nm_client, ds_email, ds_password, ds_cpf, dt_birth, bt_active)
+                values("Gustavo Alves Vieira", "teste@teste.com", "1234","360.915.878-62", "2022-01-23", 1);
 
 
 

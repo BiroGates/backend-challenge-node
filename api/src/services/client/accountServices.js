@@ -36,7 +36,10 @@ export async function createAccount(client) {
            !client.email|| !client.password)
     throw new myError('Digite todos os campos!', 400);
   
-  else if (!validName(client.name))
+  else if(typeof(client.active) !== 'boolean')
+    throw new myError('Digite o valor correto de cada campo!', 400);
+
+  else if (!validName(client.name) === false)
     throw new myError('Digite um nome valido!', 400);
   
   else if (validCpf(client.cpf) === false)
@@ -48,6 +51,7 @@ export async function createAccount(client) {
   else if (client.password?.length < 4)
     throw new myError('Senha muito fraca!', 400);
   
+  // Verificando se já existe um email ou cpf como esse no banco de dados
   else if(await doQuery(client.email, `select ds_email from tb_client where ds_email = ?`) === true)
     throw new myError('Email já existente!', 400);
 

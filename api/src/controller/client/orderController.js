@@ -18,4 +18,13 @@ server.post('/:client/product/:product/order', async (req, resp) => {
   }
 });
 
+server.get('/orders', async (req, resp) => {
+  try {
+    const r = await service.listOrders();
+    resp.send(r);
+  } catch (error) {
+    handleError(error, resp, req);   
+  }
+});
+
 export default server;

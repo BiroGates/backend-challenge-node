@@ -1,12 +1,11 @@
 import { con } from '../../repository/connection/base.js';
 export async function doQuery(info, query) {
   const [r] = await con.query(query, [info]);
-  
+
   let isEmpty;
-  if(!r.length === false)
+  if(!r.length === true)
     isEmpty = true;
   else
     isEmpty = false
-
   return isEmpty
 }
