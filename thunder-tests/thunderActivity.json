@@ -27,12 +27,83 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-11-29T00:56:30.935Z",
-    "modified": "2022-11-29T12:23:12.229Z",
+    "modified": "2022-11-30T15:48:33.050Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"name\": \"teste\",\n    \"active\": true\n}",
+      "raw": "{\n    \"name\": \"&@#(*$&@(*#&%\",\n    \"active\": true\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "04811e79-f26a-4433-9c13-214cdb543b5d",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:5000/client/login",
+    "url": "http://localhost:5000/client/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-30T11:37:03.724Z",
+    "modified": "2022-11-30T13:39:05.823Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"teste@teste.com\",\n  \"senha\": 123456\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b9503613-35c4-4270-92bb-91c153837f92",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:5000/client/account",
+    "url": "http://localhost:5000/admin/product",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-30T13:45:27.623Z",
+    "modified": "2022-11-30T14:54:04.998Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "ae62a372-e399-47a3-99cc-f7139ecdcef8",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:5000/client/account",
+    "url": "http://localhost:5000/client/account",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-30T13:45:31.173Z",
+    "modified": "2022-11-30T14:50:28.797Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Gustavo Alves Vieira\",\n  \"email\": \"teste@1teste.com\",\n  \"password\": \"1254\",\n  \"cpf\": \"36091582762\",\n  \"birth\": \"2022-01-28\",\n  \"active\": true\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "95105cf6-ff91-46ea-b3cc-75f8d3368ea1",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:5000/client/1/product/1/order",
+    "url": "http://localhost:5000/client/1/product/1/order",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-30T15:49:39.448Z",
+    "modified": "2022-11-30T15:53:43.758Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"valuePurchase\": 300.00,\n  \"qtdPurchase\": 20\n}",
       "form": []
     },
     "tests": []

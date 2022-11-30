@@ -1,5 +1,6 @@
 import { myError } from '../../util/err/customError.js';
 import * as repo from '../../repository/admin/productRepository.js';
+import { validName } from '../../util/validation/validName.js';
 
 export async function listProducts() {
   const r = await repo.listProducts();
@@ -12,6 +13,9 @@ export async function listProducts() {
 export async function insertProduct(product) {
   if(!product.name || product.active === undefined)
     throw new myError('Digite todos os campos.', 415);
+  
+  else if(validName(product.name))
+    throw new myError('Digite um nome valido!', 400);
 
   else if (product.name.length > 200)
     throw new myError('Limite de caracteres excedido!', 400)

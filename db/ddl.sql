@@ -7,6 +7,8 @@ use challengeDB;
 create table tb_client (
     id_client       int auto_increment primary key,
     nm_client       varchar(200),
+    ds_email        varchar(200),
+    ds_senha        varchar(200),
     ds_cpf          varchar(200),
     dt_birth        date,
     bt_active       tinyint

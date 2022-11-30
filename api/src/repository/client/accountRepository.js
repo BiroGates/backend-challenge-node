@@ -12,3 +12,13 @@ export async function signIn(client) {
   const [r] = await con.query(command, []);
   return r;
 }
+
+export async function createAccount(client) {
+  const command = `
+    insert into tb_client (nm_client, ds_email, ds_password, ds_cpf, dt_birth, bt_active)
+                    values(?, ?, ?, ?, ?, ?)
+  `;
+
+  const [r] = await con.query(command, [client.name, client.email, client.password, client.cpf, client.birth, client.active]);
+  return r.insertId;
+}

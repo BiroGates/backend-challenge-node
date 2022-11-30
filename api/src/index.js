@@ -7,6 +7,7 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
+// Arquivo responsável por configurar todas as rotas
 configRoutes(server);
 
 server.listen(process.env.PORT, ()=> console.log(`API running on PORT ${process.env.PORT}`));
