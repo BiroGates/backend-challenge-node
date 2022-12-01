@@ -4,11 +4,13 @@ import { myError } from '../../util/err/customError.js';
 import { doQuery } from '../../util/validation/doQuery.js';
 
 export async function makeOrder(id_client, id_product, order) {
-  if(!id_product 
-    || !order.valuePurchase || !order.qtdPurchase)
+  if(!order.valuePurchase || !order.qtdPurchase)
     throw new myError('Preencha todos os campos!', 400);
   
-  else if(await doQuery(id_product, `select * from tb_product where id_product = ?`) === true)
+  else if(!id_client)
+    throw new myError('Por favor faça o login primeiro!');
+
+  else if(!id_product ||await doQuery(id_product, `select * from tb_product where id_product = ?`) === true)
     throw new myError('Produto invalido!', 400);
 
   else if(typeof(order.valuePurchase) !== 'number' || typeof(order.qtdPurchase) !== 'number')

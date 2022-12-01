@@ -13,6 +13,7 @@ server.post('/login', async (req, resp) => {
     const admin = req.body;
     let r = await services.signIn(admin);
     const jwt = generateAdminToken(r)
+    
     resp.send({
       token: jwt
     });
