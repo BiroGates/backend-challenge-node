@@ -30,4 +30,14 @@ server.post('/product', async (req, resp) => {
   }
 });
 
+// Endpoint responsavel por listar todas as ordens realizadasn por usuarios
+server.get('/order', async (req, resp) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+});
+
+
 export default server;
