@@ -1,0 +1,248 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "backend-challenge-code",
+        "description": "Documentação referente ao teste passado!",
+        "contact": "gustavoAlvesVieiraDev@outlook.com"
+    },
+    "paths":{
+        "/admin/login":{
+            "post":{
+                "summary": "Login do administrador",
+                "description": "Rota responsavel por logar um administrador no sistema",
+                "tags":["Admin"],
+                "requestBody": {
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/admin"
+                            },
+                            "examples":{
+                                "admin":{
+                                    "value":{
+                                        "email": "teste@teste.com",
+                                        "password": "123456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "204":{
+                        "description": "OK",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "email":{
+                                            "type": "string"
+                                        },
+                                        "password":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/product":{
+            "post":{
+                "summary": "Inserir produto",
+                "description": "Endpoint responsável por inserir um novo produto no sistema",
+                "tags":["Admin"],
+                "requestBody": {
+                    "description": "Recebe um objeto com as informaçoes necessárias para o cadastro de um novo produto.",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "active":{
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "examples":{
+                                "admin":{
+                                    "value":{
+                                        "name": "Netflix",
+                                        "active": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "204":{
+                        "description": "Retorna o id do produto inserido.",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "insetedId":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples":{
+                                    "admin":{
+                                        "value":{
+                                            "inserteId": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/product ":{
+            "get":{
+                "summary": "Listar Produtos",
+                "description": "Retorna todos os produtos cadastrados no sistema",
+                "tags":["Admin"],
+                "requestBody": {
+                    "description": "Recebe um objeto com as informaçoes necessárias para o cadastro de um novo produto.",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "active":{
+                                        "type": "boolean"
+                                    }
+                                }
+                            },
+                            "examples":{
+                                "admin":{
+                                    "value":{
+                                        "name": "Netflix",
+                                        "active": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "204":{
+                        "description": "Retorna o id do produto inserido.",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "insetedId":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples":{
+                                    "admin":{
+                                        "value":{
+                                            "inserteId": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/client/login ":{
+            "post":{
+                "summary": "Login do cliente",
+                "description": "Retonar o ID do cliente encontrado.",
+                "tags":["Cliente"],
+                "requestBody": {
+                    "description": "Recebe um objeto com email e senha do cliente.",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples":{
+                                "admin":{
+                                    "value":{
+                                        "email": "teste@teste.com",
+                                        "password": "123456" 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "204":{
+                        "description": "Retorna email e senha junto com o ID do cliente.",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "id":{
+                                            "type": "number"
+                                        },
+                                        "email":{
+                                            "type": "string"
+                                        },
+                                        "password":{
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples":{
+                                    "admin":{
+                                        "value":{
+                                            "id": 1,
+                                            "email": "teste@teste.com",
+                                            "password": "123456"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "admin":{
+                "type": "object",
+                "properties":{
+                    "email": {
+                        "type":"string"
+                    },
+                    "senha":{
+                        "type":"string"
+                    }
+                }
+            }
+        }
+    }
+}

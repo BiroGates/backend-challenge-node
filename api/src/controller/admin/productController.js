@@ -9,6 +9,7 @@ server.get('/product', async (req, resp) => {
   try {
     const r = await services.listProducts();
     resp.send(r);
+  
   } catch (error) {
     handleError(error, resp, req);
   }
@@ -22,8 +23,10 @@ server.post('/product', async (req, resp) => {
     resp.send({
       insertedId: r
     });
+  
   } catch (error) {
     handleError(error, resp, req);
+  
   }
 });
 

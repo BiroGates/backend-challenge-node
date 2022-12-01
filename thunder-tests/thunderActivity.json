@@ -102,5 +102,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "da1dd5e2-348f-451d-aa4b-227a3af0c81b",
+    "colId": "history",
+    "containerId": "",
+    "name": "loginClient",
+    "url": "http://localhost:5000/client/login",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-11-30T23:25:45.319Z",
+    "modified": "2022-11-30T23:29:28.324Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"teste@teste.com\",\n  \"password\": \"1234\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

@@ -12,8 +12,10 @@ server.post('/login', async (req, resp) => {
     const client = req.body;
     const r = await services.signIn(client);
     resp.send(r);
+  
   } catch (error) {
     handleError(error, resp, req)
+  
   }
 });
 
@@ -25,8 +27,10 @@ server.post('/account', async (req, resp) => {
     resp.send({
       insertedId: r
     });
+  
   } catch (error) {
     handleError(error, resp, req);
+  
   }
 });
 

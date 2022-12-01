@@ -9,7 +9,7 @@ import { doQuery } from '../../util/validation/doQuery.js';
 import * as repo from '../../repository/client/accountRepository.js';
 
 export async function signIn(client) {
-  if(!client.email || !client.senha)
+  if(!client.email || !client.password)
     throw new myError('Digite todos os campos!', 400);
   
   else if (validEmail(client.email) === false)
@@ -18,7 +18,7 @@ export async function signIn(client) {
   else if (typeof client.email === 'undefined' || client.email === '')
     throw new myError('E-mail obrigatório.', 400);
   
-  else if (typeof client.senha === 'undefined' || client.senha === '')
+  else if (typeof client.password === 'undefined' || client.password === '')
     throw new myError('Senha obrigatória.', 400);
 
   const r = await repo.signIn(client);
