@@ -185,7 +185,7 @@
                                 }
                             },
                             "examples":{
-                                "admin":{
+                                "cliente":{
                                     "value":{
                                         "email": "teste@teste.com",
                                         "password": "123456" 
@@ -215,11 +215,204 @@
                                     }
                                 },
                                 "examples":{
-                                    "admin":{
+                                    "cliente":{
                                         "value":{
                                             "id": 1,
                                             "email": "teste@teste.com",
                                             "password": "123456"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/client/account ":{
+            "post":{
+                "summary": "Criar conta",
+                "description": "Realiza a inserção de um cliente no banco.",
+                "tags":["Cliente"],
+                "requestBody": {
+                    "description": "Recebe um objeto como parametro de corpo.",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    },
+                                    "birth":{
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples":{
+                                "cliente":{
+                                    "value":{
+                                        "name": "John Doe",
+                                        "email": "email@real.com",
+                                        "password": "123456",
+                                        "cpf": "22200130120",
+                                        "birth": "2003-01-23"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "204":{
+                        "description": "Retorna o id inserido do cliente.",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "insetedId":{
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "examples":{
+                                    "cliente":{
+                                        "value":{
+                                            "insertedId": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/client/:client/product/:product/order ":{
+            "post":{
+                "summary": "Fazer investimento.",
+                "description": "Realiza um investimento com base no ID do cliente e no ID do produto",
+                "tags":["Cliente"],
+                "requestBody": {
+                    "description": "Recebe um objeto como parametro de corpo.",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "valuePurchase":{
+                                        "type": "number"
+                                    },
+                                    "qtdPurchase":{
+                                        "type": "number"
+                                    }
+                                }
+                            },
+                            "examples":{
+                                "cliente":{
+                                    "value":{
+                                        "valuePurchase": 150.00,
+                                        "qtdPurchase": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "client",
+                        "description": "ID da conta do cliente.",
+                        "required": true
+                    },
+                    {
+                        "name": "product",
+                        "description": "ID do produto selecionado.",
+                        "required": true
+                    }
+                ],
+                "responses":{
+                    "204":{
+                        "description": "Retorna o id inserido do cliente.",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "insetedId":{
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "examples":{
+                                    "cliente":{
+                                        "value":{
+                                            "insertedId": 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/client/order":{
+            "get":{
+                "summary": "Listar ordens de produtos.",
+                "description": "Lista todas as ordens relizadas por usuarios.",
+                "tags":["Cliente"],
+                "responses":{
+                    "204":{
+                        "description": "Retorna um objeto com o as informações do cliente e do produto.",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "name":{
+                                            "type": "string"
+                                        },
+                                        "cpf": {
+                                            "type": "string"
+                                        },
+                                        "nameProduct":{
+                                            "type":"string"
+                                        },
+                                        "valuePurchase":{
+                                            "type": "number"
+                                        },
+                                        "qtdPurchase":{
+                                            "type": "number"
+                                        },
+                                        "total": {
+                                            "type":"number"
+                                        },
+                                        "date": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples":{
+                                    "cliente":{
+                                        "value":{
+                                            "name": "Gustavo Alves Vieira",
+                                            "cpf": "222.222.222.62",
+                                            "nameProduct": "Facebook",
+                                            "valuePurchase": 200,
+                                            "qtdPurchase": 2,
+                                            "total": 400,
+                                            "date": "2022-11-28T03:00:00.000Z"
                                         }
                                     }
                                 }

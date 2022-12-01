@@ -32,13 +32,10 @@ export async function createAccount(client) {
     throw new myError('Limite de caracteres excedido!', 400);
   
   else if (!client.name || !client.cpf ||
-           !client.birth|| !client.active ||
-           !client.email|| !client.password)
+           !client.birth|| !client.email|| 
+           !client.password)
     throw new myError('Digite todos os campos!', 400);
   
-  else if(typeof(client.active) !== 'boolean')
-    throw new myError('Digite o valor correto de cada campo!', 400);
-
   else if (!validName(client.name) === false)
     throw new myError('Digite um nome valido!', 400);
   
@@ -52,10 +49,10 @@ export async function createAccount(client) {
     throw new myError('Senha muito fraca!', 400);
   
   // Verificando se já existe um email ou cpf como esse no banco de dados
-  else if(await doQuery(client.email, `select ds_email from tb_client where ds_email = ?`) === true)
+  else if(await doQuery(client.email, `select ds_email from tb_client where ds_email = ?`) === false)
     throw new myError('Email já existente!', 400);
 
-  else if(await doQuery(client.cpf, `select ds_cpf from tb_client where ds_cpf = ?`) === true)
+  else if(await doQuery(client.cpf, `select ds_cpf from tb_client where ds_cpf = ?`) === false)
     throw new myError('CPF já cadastrado!', 400);
 
   let r = await repo.createAccount(client);

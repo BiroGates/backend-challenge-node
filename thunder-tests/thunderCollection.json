@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "_id": "07d084c2-fdb5-4c9f-a666-fdea144a00bf",
+    "colName": "Client",
+    "created": "2022-12-01T16:36:42.322Z",
+    "sortNum": 10000,
+    "folders": []
+  },
+  {
+    "_id": "2f6ccf42-831d-4a8e-8528-afe3da331af5",
+    "colName": "Admin",
+    "created": "2022-12-01T16:36:45.755Z",
+    "sortNum": 20000,
+    "folders": []
+  }
+]

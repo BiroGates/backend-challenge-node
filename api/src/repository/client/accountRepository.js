@@ -21,6 +21,6 @@ export async function createAccount(client) {
                     values(?, ?, ?, ?, ?, ?)
   `;
 
-  const [r] = await con.query(command, [client.name, client.email, client.password, client.cpf, client.birth, client.active]);
+  const [r] = await con.query(command, [client.name, client.email, client.password, client.cpf, client.birth, true]);
   return r.insertId;
 }

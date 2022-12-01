@@ -11,7 +11,7 @@ export async function makeOrder(id_client, id_product, order) {
   return r.insertId;
 }
 
-export async function listOrders() {
+export async function listOrders(id_client) {
   const command = `
     select  nm_client     as name,
             ds_cpf        as cpf,
@@ -25,8 +25,9 @@ export async function listOrders() {
     from    tb_order
     inner join tb_client on tb_order.id_client = tb_client.id_client
     inner join tb_product on tb_order.id_product = tb_product.id_product
+    where tb_order.id_client = ?
   `;
 
-  const [r] = await con.query(command, []);
+  const [r] = await con.query(command, [id_client]);
   return r;
 }

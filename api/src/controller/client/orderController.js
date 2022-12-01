@@ -4,24 +4,28 @@ import { handleError } from '../../util/err/customError.js';
 
 const server = Router();
 
-server.post('/:client/product/:product/order', async (req, resp) => {
+// Endpoint responsável por realizar um investimento
+server.post('/product/:product/order', async (req, resp) => {
   try {
     const order = req.body;
-    const id_client = req.params.client;
     const id_product = req.params.product;
-    const r = await service.makeOrder(id_client, id_product, order);
-    resp.send({
-      insertedId: r
-    });
+    const r = await service.makeOrder(req.client.id, id_product, order);
+    
+    resp.send({insertedId: r});
+    
   } catch (error) {
     handleError(error, resp, req);
+  
   }
 });
 
-server.get('/orders', async (req, resp) => {
+
+// Endpoint responsavel por listar todos os investimentos
+server.get('/order', async (req, resp) => {
   try {
-    const r = await service.listOrders();
+    const r = await service.listOrders(req.client.id);     
     resp.send(r);
+  
   } catch (error) {
     handleError(error, resp, req);   
   }

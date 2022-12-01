@@ -1,6 +1,10 @@
+// Jwt
+import { generateToken } from '../../repository/connection/auth.js';
+
 import { handleError } from '../../util/err/customError.js';
-import * as services from '../../services/client/accountServices.js';
 import { Router } from 'express';
+
+import * as services from '../../services/client/accountServices.js';
 
 const server = Router();
 
@@ -11,7 +15,10 @@ server.post('/login', async (req, resp) => {
   try { 
     const client = req.body;
     const r = await services.signIn(client);
-    resp.send(r);
+    const jwt = generateToken(r);
+    resp.send({
+      token: jwt
+    });
   
   } catch (error) {
     handleError(error, resp, req)

@@ -10,8 +10,8 @@ export class myError{
 export function handleError(error, resp, req) {
   // Verificando se o tipo do erro é personalizado
   if(error.typeError === 'customError')
-    resp.status(error.status).send({
-      x: error.msg ? error.msg : 400
+    resp.status(error.status ? error.status : 400).send({
+      x: error.msg
     });
   
   else {

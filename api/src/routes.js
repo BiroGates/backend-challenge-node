@@ -1,5 +1,3 @@
-import express from "express";
-
 // Admin
 import adminAccountController from './controller/admin/accountController.js';
 import adminProductController from './controller/admin/productController.js';
@@ -8,10 +6,12 @@ import adminProductController from './controller/admin/productController.js';
 import clientAccountController from './controller/client/accountController.js';
 import clientOrderController from './controller/client/orderController.js';
 
+import { clientPermission, adminPermission } from './repository/connection/auth.js';
+
 export default function configRoutes(server) {
   server.use('/admin', adminAccountController);
-  server.use('/admin', adminProductController);
+  server.use('/admin', adminPermission, adminProductController);
 
   server.use('/client', clientAccountController);
-  server.use('/client', clientOrderController);
+  server.use('/client', clientPermission, clientOrderController);
 }
