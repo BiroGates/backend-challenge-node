@@ -30,17 +30,21 @@
                 },
                 "responses":{
                     "204":{
-                        "description": "OK",
+                        "description": "Retorna um token de acesso administrativo.",
                         "content":{
                             "application/json":{
                                 "schema":{
                                     "type": "object",
                                     "properties":{
-                                        "email":{
-                                            "type": "string"
-                                        },
-                                        "password":{
-                                            "type": "string"
+                                        "token":{
+                                            "type":"string"
+                                        }
+                                    }
+                                },
+                                "examples":{
+                                    "admin": {
+                                        "value":{
+                                            "token": "XXXXXXXXXXX.XXXXXXXXXX.XXXXXXXXXX"
                                         }
                                     }
                                 }
@@ -81,6 +85,14 @@
                         }
                     }
                 },
+                "parameters": [
+                    {
+                        "name": "x-acess-token",
+                        "in": "headers",
+                        "description": "Token gerado no momento do login.",
+                        "required": true
+                    }
+                ],
                 "responses":{
                     "204":{
                         "description": "Retorna o id do produto inserido.",
@@ -112,62 +124,118 @@
                 "summary": "Listar Produtos",
                 "description": "Retorna todos os produtos cadastrados no sistema",
                 "tags":["Admin"],
-                "requestBody": {
-                    "description": "Recebe um objeto com as informaçoes necessárias para o cadastro de um novo produto.",
-                    "content":{
-                        "application/json":{
-                            "schema":{
-                                "type": "object",
-                                "properties":{
-                                    "name":{
-                                        "type": "string"
-                                    },
-                                    "active":{
-                                        "type": "boolean"
+                "responses":{
+                    "204":{
+                        "description": "Retorna uma array de objetos com todos os produtos.",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties":{
+                                        "name":{
+                                            "type": "string"
+                                        },
+                                        "active":{
+                                            "type": "boolean"
+                                        }
                                     }
-                                }
-                            },
-                            "examples":{
-                                "admin":{
-                                    "value":{
-                                        "name": "Netflix",
-                                        "active": true
+                                },
+                                "examples":{
+                                    "admin":{
+                                        "value":[
+                                            {
+                                                "name": "Netflix",
+                                                "active": true
+                                            }
+                                        ]
                                     }
                                 }
                             }
                         }
                     }
                 },
+                "parameters": [
+                    {
+                        "name": "x-acess-token",
+                        "in": "headers",
+                        "description": "Token gerado no momento do login.",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "/admin/orders ":{
+            "get":{
+                "summary": "Listar invesitmentos de todos os clientes",
+                "description": "Retorna todas os invesitmentos efetuados por clientes",
+                "tags":["Admin"],
                 "responses":{
                     "204":{
-                        "description": "Retorna o id do produto inserido.",
+                        "description": "Retorna uma arrya de objetos",
                         "content":{
                             "application/json":{
                                 "schema":{
                                     "type": "object",
                                     "properties":{
-                                        "insetedId":{
+                                        "name": {
                                             "type": "string"
+                                        },
+                                        "cpf": {
+                                            "type": "string"
+                                        },
+                                        "nameProduct": {
+                                            "type": "string"
+                                        },
+                                        "valuePurchase": {
+                                            "type": "number"
+                                        },
+                                        "qtdPurchase": {
+                                            "type": "number"
+                                        },
+                                        "total": {
+                                            "type": "number"
+                                        },
+                                        "date": {
+                                            "type": "date"
                                         }
                                     }
                                 },
                                 "examples":{
                                     "admin":{
-                                        "value":{
-                                            "inserteId": 1
+                                        "value":[
+                                            {                                            
+                                            "name": "Gustavo Alves Vieira",
+                                            "cpf": "22202123060",
+                                            "nameProduct": "Facebook",
+                                            "valuePurchase": 150,
+                                            "qtdPurchase": 10,
+                                            "total": 1500,
+                                            "date": "2022-12-01T03:00:00.000Z"
                                         }
+                                    ]
                                     }
                                 }
                             }
                         }
                     }
-                }
+                },
+                "parameters": [
+                    {
+                        "name": "x-acess-token",
+                        "in": "headers",
+                        "description": "Token gerado no momento do login.",
+                        "required": true
+                    }
+                ]
             }
         },
+
+
+
         "/client/login ":{
             "post":{
                 "summary": "Login do cliente",
-                "description": "Retonar o ID do cliente encontrado.",
+                "description": "Realiza um busca no banco com as credencias informadas.",
                 "tags":["Cliente"],
                 "requestBody": {
                     "description": "Recebe um objeto com email e senha do cliente.",
@@ -197,19 +265,13 @@
                 },
                 "responses":{
                     "204":{
-                        "description": "Retorna email e senha junto com o ID do cliente.",
+                        "description": "Retorna um token de acesso.",
                         "content":{
                             "application/json":{
                                 "schema":{
                                     "type": "object",
                                     "properties":{
-                                        "id":{
-                                            "type": "number"
-                                        },
-                                        "email":{
-                                            "type": "string"
-                                        },
-                                        "password":{
+                                        "token":{
                                             "type": "string"
                                         }
                                     }
@@ -217,9 +279,7 @@
                                 "examples":{
                                     "cliente":{
                                         "value":{
-                                            "id": 1,
-                                            "email": "teste@teste.com",
-                                            "password": "123456"
+                                            "token":"XXXXXXXXXXX.XXXXXXXXXX.XXXXXXXXXX"
                                         }
                                     }
                                 }
@@ -298,9 +358,9 @@
                 }
             }
         },
-        "/client/:client/product/:product/order ":{
+        "/client/product/:product/order ":{
             "post":{
-                "summary": "Fazer investimento.",
+                "summary": "Fazer ordem.",
                 "description": "Realiza um investimento com base no ID do cliente e no ID do produto",
                 "tags":["Cliente"],
                 "requestBody": {
@@ -331,19 +391,21 @@
                 },
                 "parameters": [
                     {
-                        "name": "client",
-                        "description": "ID da conta do cliente.",
+                        "name": "x-acess-token",
+                        "in": "headers",
+                        "description": "Token gerado no momento do login.",
                         "required": true
                     },
                     {
                         "name": "product",
+                        "in": "headers",
                         "description": "ID do produto selecionado.",
                         "required": true
                     }
                 ],
                 "responses":{
                     "204":{
-                        "description": "Retorna o id inserido do cliente.",
+                        "description": "Retorna o id inserido da ordem de pedido.",
                         "content":{
                             "application/json":{
                                 "schema":{
@@ -369,12 +431,12 @@
         },
         "/client/order":{
             "get":{
-                "summary": "Listar ordens de produtos.",
-                "description": "Lista todas as ordens relizadas por usuarios.",
+                "summary": "Lista investimentos realizados pelo cliente logado.",
+                "description": "Lista todos os investimentos realizados pelo cliente logado.",
                 "tags":["Cliente"],
                 "responses":{
                     "204":{
-                        "description": "Retorna um objeto com o as informações do cliente e do produto.",
+                        "description": "Retorna uma array de objetos com as informações do investimento",
                         "content":{
                             "application/json":{
                                 "schema":{
@@ -419,7 +481,15 @@
                             }
                         }
                     }
-                }
+                },
+                "parameters": [
+                    {
+                        "name": "x-acess-token",
+                        "in": "headers",
+                        "description": "Token gerado no momento do login.",
+                        "required": true
+                    }
+                ]
             }
         }
     },
