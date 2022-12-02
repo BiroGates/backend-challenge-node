@@ -13,7 +13,8 @@ export async function makeOrder(id_client, id_product, order) {
 
 export async function listOrders(id_client) {
   const command = `
-    select  nm_client     as name,
+    select  id_order      as id,
+            nm_client     as name,
             ds_cpf        as cpf,
 
             nm_product    as nameProduct,
